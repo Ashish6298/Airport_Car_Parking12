@@ -1,28 +1,21 @@
-import Header from'./pages/Header.js';
-import HomePage from'./pages/HomePage.js';
-import Footer from './pages/Footer.js';
-import './App.css';
-import React, { useState } from 'react'
-import SearchForm from './pages/SearchForm.js';
-import LoadingBar from 'react-top-loading-bar';
-
-
+import './style.css';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Layout from './pages/Layout';
+import HomePage from './pages/HomePage';
+import Login from './pages/Login';
 function App() {
-const [progress, setProgress] = useState(0);
   return (
-    <>
-    <Header/>
-    <LoadingBar
-          height={3}
-          color='#f11946'
-          progress={progress}
-        />
-    <SearchForm setProgress={setProgress}/>
-    <HomePage/>
-    <Footer/>
-    </>
-    );
-} 
+   <BrowserRouter>
+   <Routes>
+   <Route path="/" element={<Layout/>}>
+   <Route path="/" index element={<HomePage/>}/>
+   <Route path="/login" element={<Login/>}/>
+   <Route path="*" element={<HomePage/>}/>
+   
+   </Route>
+   </Routes>
+   </BrowserRouter>
+  );
+}
 
 export default App;
- 
