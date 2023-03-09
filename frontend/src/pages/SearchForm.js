@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import React,{ useState } from "react";
 import moment from "moment";
+import axios from "axios";
+
 const SearchForm = () => {
     const today = moment().format('YYYY-MM-DD').toString();
     const tomrrow = moment().add(1, 'days').format('YYYY-MM-DD').toString();
@@ -11,6 +14,23 @@ const SearchForm = () => {
         checkin: false,
         checkout: false
     })
+
+
+    const[records,setRecords]=useState([]);
+    const[loading,setLoading]=useState(false);
+    const fetchData=async()=>{
+     setLoading(true)
+     const {data}=await axios.get('http://43.205.1.85:9009/v1/airports')
+     setLoading(false)
+     setRecords(data.results)
+    }
+    useEffect(()=>{
+     fetchData()
+    },[])
+
+
+
+
 
     const DepartureAirportHandler = (e) => {
         //event.target.value    
@@ -88,7 +108,26 @@ const SearchForm = () => {
                             placeholder="Departure Airport"
                             className="placeholder placeholder-airport" />
                         {(errors.departureAirport ? <div><br /><div style={{ border: 1, backgroundColor: "#00FFFF" }}><h6><em>Invalid Departure Airport</em></h6></div></div> : null)}
-                    </div> <i
+                    </div> 
+                    
+                    
+                    <ul>
+                                   {records.map((record,index)=>{
+                                     const isEven = index%2;
+                                       return (
+                                         <li key={index}style={{backgroundColor:isEven?'black':'grey'}}>
+                                             {record.name}
+                                         </li>
+                                              )
+                                             }
+                                         )} 
+                                     </ul>
+
+                    
+                    
+                    
+                    
+                    <i
                         className="fas fa-map-marker-alt input-icon"></i>
                 </label>
                     <div className="col p-0 row m-0 mb-2 dates"><label
