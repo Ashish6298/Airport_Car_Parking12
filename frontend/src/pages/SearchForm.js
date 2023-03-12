@@ -6,7 +6,7 @@ import AirportSuggestions from "./AirportSuggestions";
 const SearchForm = () => {
     const today = moment().format('YYYY-MM-DD').toString();
     const tomrrow = moment().add(1, 'days').format('YYYY-MM-DD').toString();
-    const [departureAirport, setDepartureAirport] = useState("Delhi");
+    const [departureAirport, setDepartureAirport] = useState("");
     const [checkin, setCheckin] = useState(today);
     const [checkout, setCheckout] = useState(tomrrow);
     const [airports, setAirports] = useState([]);
