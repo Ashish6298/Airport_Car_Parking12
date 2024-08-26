@@ -4,7 +4,7 @@ const Header = () =>{
     return(
     <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                               <a className="navbar-brand" href="/"><img src={require("./assets/navigation_logo.png")}
+                               <a className="navbar-brand" href="/"><img src={require("../assets/navigation_logo.png")}
 
                    
                    alt="AIRPORT PARKING - RESERVATIONS.COM"  height="40" /></a>
